@@ -289,7 +289,9 @@ def retarget_hard(inRig):
     if proxyRig.animation_data:
         if proxyRig.animation_data.action:
             frame_start = proxyRig.animation_data.action.frame_range[0]
-    bpy.context.scene.frame_set(frame_start)
+
+        frame_start = int(frame_start)
+        bpy.context.scene.frame_set(frame_start)
     
     proxyRig.animation_data_clear()
     bpy.ops.object.mode_set(mode='POSE')
@@ -473,6 +475,8 @@ def retarget_soft(inRig, report=False):
     if proxyRig.animation_data:
         if proxyRig.animation_data.action:
             frame_start = proxyRig.animation_data.action.frame_range[0]
+
+    frame_start = int(frame_start)
     bpy.context.scene.frame_set(frame_start)
     
     proxyRig.animation_data_clear()
@@ -668,6 +672,8 @@ def retarget_soft(inRig, report=False):
         if outRig.animation_data:
             if outRig.animation_data.action:
                 frame_start = outRig.animation_data.action.frame_range[0]
+
+        frame_start = int(frame_start)
         bpy.context.scene.frame_set(frame_start)
         
         outRig.animation_data_clear()
@@ -909,6 +915,8 @@ def retarget_custom(inRig=None, outRig=None):
     if proxyRig.animation_data:
         if proxyRig.animation_data.action:
             frame_start = proxyRig.animation_data.action.frame_range[0]
+
+    frame_start = int(frame_start)
     bpy.context.scene.frame_set(frame_start)
     
     proxyRig.animation_data_clear()
@@ -1078,6 +1086,8 @@ def retarget_custom(inRig=None, outRig=None):
         if outRig.animation_data:
             if outRig.animation_data.action:
                 frame_start = outRig.animation_data.action.frame_range[0]
+
+        frame_start = int(frame_start)
         bpy.context.scene.frame_set(frame_start)
         
         outRig.animation_data_clear()
@@ -1351,6 +1361,8 @@ def update_map(inRig=None):
                     frame_start = inRig.animation_data.action.frame_range[0]
             if has_action == False:
                     frame_start = bpy.context.scene.frame_start
+            
+            frame_start = int(frame_start)
             bpy.context.scene.frame_set(frame_start)
 
             

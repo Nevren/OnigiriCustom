@@ -1009,6 +1009,7 @@ def write_animation(
     bpy.context.scene.oni_anim.property_unset("export_sl_anim_label_short")
     anim.export_sl_anim_alert = False
 
+    # frame_current = int(frame_current)
     bpy.context.scene.frame_set(frame_current)
 
     print("path:", path)
@@ -1229,6 +1230,7 @@ def write_mapped_animation(
     bpy.context.scene.oni_anim.property_unset("export_sl_anim_label_short")
     anim.export_sl_anim_alert = False
 
+    # frame_current = int(frame_current)
     bpy.context.scene.frame_set(frame_current)
 
     print("path:", path)
@@ -3474,6 +3476,7 @@ def transfer_motion(sarm=None, tarm=None):
         fc.keyframe_points.foreach_set("co", kfp_data)
         fc.update()
 
+    # frame_current = int(frame_current)
     bpy.context.scene.frame_set(frame_current)
 
     matrices = {}
@@ -3621,6 +3624,7 @@ def bake_motion(sarm=None, tarm=None, frame_start=0, frame_end=0):
         fc.keyframe_points.foreach_set("co", kfp_data)
         fc.update()
 
+    # frame_current = int(frame_current)
     bpy.context.scene.frame_set(frame_current)
 
     return True
@@ -3665,13 +3669,16 @@ def get_frame_range(armature, start=True, end=False):
     else:
         frame_start = bpy.context.scene.frame_start
         frame_end = bpy.context.scene.frame_end
+    
+    frame_start = int(frame_start)
+    frame_end = int(frame_end)
 
     if start == True:
         bpy.context.scene.frame_set(frame_start)
     if end == True:
         bpy.context.scene.frame_set(frame_end)
 
-    return int(frame_start), int(frame_end)
+    return frame_start, frame_end
 
 def apply_transforms(arm, report=False):
 

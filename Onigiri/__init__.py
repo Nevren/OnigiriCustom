@@ -3,9 +3,9 @@
 bl_info = {
        "name": "Onigiri",
        "author": "Nessaki",
-       "version": (3, 0, 5, 0),
+       "version": (3, 0, 5, 1),
        "blender": (2, 80, 0),
-       "description": "A Japanese dish consisting of small balls or triangles of rice stuffed with a pickled or salted filling, and typically wrapped in dried seaweed.",
+       "description": "Fixed Float Issues",
        "warning": "",
        "category": "3D View",
        "location": "View3D > Tools > Onigiri"
@@ -6499,6 +6499,11 @@ keep your product as is with the ability to continue working on it"""
                 if o.animation_data != None:
                     if o.animation_data.action != None:
                         frame_start = o.animation_data.action.frame_range[0]
+                        
+                        # Fix float errors
+                        frame_start = int(frame_start)
+                        frame_current = int(frame_current)
+                        
                         bpy.context.scene.frame_set(frame_start)
                         bpy.context.scene.frame_set(frame_current)
             
@@ -29506,6 +29511,11 @@ to give you a frozen/static pose, except for some goofy bones"""
         anim.anim_loop_advanced = False
         anim.anim_loop_in_frame = frame_current - 1
         anim.anim_loop_out_frame = frame_current
+
+        # Fix float errors
+        frame_start = int(frame_start)
+        frame_end = int(frame_end)
+
         oni.animation_start_frame = frame_start
         oni.animation_end_frame = frame_end
         oni.animation_fps = 5
